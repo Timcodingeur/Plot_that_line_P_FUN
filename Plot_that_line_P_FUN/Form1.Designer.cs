@@ -54,6 +54,7 @@
             this.month.TabIndex = 1;
             this.month.Text = "1M";
             this.month.UseVisualStyleBackColor = true;
+            this.month.Click += new System.EventHandler(this.month_Click);
             // 
             // month6
             // 
@@ -63,6 +64,7 @@
             this.month6.TabIndex = 2;
             this.month6.Text = "6M";
             this.month6.UseVisualStyleBackColor = true;
+            this.month6.Click += new System.EventHandler(this.month6_Click);
             // 
             // years
             // 
@@ -72,6 +74,7 @@
             this.years.TabIndex = 3;
             this.years.Text = "1Y";
             this.years.UseVisualStyleBackColor = true;
+            this.years.Click += new System.EventHandler(this.years_Click);
             // 
             // max
             // 
@@ -81,6 +84,7 @@
             this.max.TabIndex = 4;
             this.max.Text = "MAX";
             this.max.UseVisualStyleBackColor = true;
+            this.max.Click += new System.EventHandler(this.max_Click);
             // 
             // week
             // 
@@ -90,6 +94,7 @@
             this.week.TabIndex = 5;
             this.week.Text = "1W";
             this.week.UseVisualStyleBackColor = true;
+            this.week.Click += new System.EventHandler(this.week_Click);
             // 
             // reset
             // 

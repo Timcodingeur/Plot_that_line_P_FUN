@@ -19,13 +19,10 @@ namespace Plot_that_line_P_FUN
             InitializeComponent();
             panel1.Controls.Add(FormsPlot1);
 
-            
-
             List<CryptoData> bitcoinData = ReadCsv("../../../../Top-100-Crypto-Coins/bitcoin.csv");
             List<CryptoData> bitcoinCashData = ReadCsv("../../../../Top-100-Crypto-Coins/bitcoin_cash.csv");
             List<CryptoData> bnbData = ReadCsv("../../../../Top-100-Crypto-Coins/bnb.csv");
-
-            
+     
             if (bitcoinData == null || bitcoinCashData == null || bnbData == null)
             {
                 MessageBox.Show("Erreur lors de la lecture des fichiers CSV.");
@@ -87,7 +84,7 @@ namespace Plot_that_line_P_FUN
             double[] yValues = data.Select(point => point.Close).ToArray();
             double[] xValues = data.Select(point => point.Date.ToOADate()).ToArray();
             DateTime start = DateTime.FromOADate(xValues[1]);
-
+            
             var signalPlot = FormsPlot1.Plot.Add.Signal(yValues);
             signalPlot.Data.XOffset = start.ToOADate();
             signalPlot.Data.Period = 1.0;
@@ -101,6 +98,31 @@ namespace Plot_that_line_P_FUN
         }
 
         private void reset_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void max_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void years_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void month6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void month_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void week_Click(object sender, EventArgs e)
         {
 
         }
