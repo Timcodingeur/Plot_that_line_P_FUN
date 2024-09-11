@@ -37,10 +37,7 @@ namespace Plot_that_line_P_FUN
             FormsPlot1.Plot.XLabel("Date");
             FormsPlot1.Plot.YLabel("Prix de fermeture");
             FormsPlot1.Plot.Axes.DateTimeTicksBottom();
-            FormsPlot1.Refresh();
-             
-
-            
+            FormsPlot1.Refresh();  
         } 
        
 
@@ -77,13 +74,13 @@ namespace Plot_that_line_P_FUN
            
 
             double[] yValues = data.Select(point => point.Close).ToArray();
-                double[] xValues = data.Select(point => point.Date.ToOADate()).ToArray();
-                DateTime start = DateTime.FromOADate(xValues[1]);
+            double[] xValues = data.Select(point => point.Date.ToOADate()).ToArray();
+            DateTime start = DateTime.FromOADate(xValues[1]);
 
-                var signalPlot = FormsPlot1.Plot.Add.Signal(yValues);
-                signalPlot.Data.XOffset = start.ToOADate();
-                signalPlot.Data.Period = 1.0;
-  
+            var signalPlot = FormsPlot1.Plot.Add.Signal(yValues);
+            signalPlot.Data.XOffset = start.ToOADate();
+            signalPlot.Data.Period = 1.0;
+            signalPlot.LegendText = label;
 
 
         }
@@ -101,6 +98,7 @@ namespace Plot_that_line_P_FUN
             var signalPlot = FormsPlot1.Plot.Add.Signal(yValues);
             signalPlot.Data.XOffset = start.ToOADate();
             signalPlot.Data.Period = 1.0;
+            signalPlot.LegendText = label;
 
         }
         public void search()
@@ -116,6 +114,7 @@ namespace Plot_that_line_P_FUN
                 PlotSignalDataCal("Bitcoin", bitcoinData, dateTimePicker1.Value, dateTimePicker2.Value);
                 PlotSignalDataCal("Bitcoin Cash", bitcoinCashData, dateTimePicker1.Value, dateTimePicker2.Value);
                 PlotSignalDataCal("BNB", bnbData, dateTimePicker1.Value, dateTimePicker2.Value);
+                FormsPlot1.Plot.Axes.DateTimeTicksBottom();
                 FormsPlot1.Refresh();
             }
             catch
