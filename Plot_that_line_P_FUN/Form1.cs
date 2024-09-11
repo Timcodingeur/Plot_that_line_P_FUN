@@ -81,8 +81,6 @@ namespace Plot_that_line_P_FUN
             signalPlot.Data.XOffset = start.ToOADate();
             signalPlot.Data.Period = 1.0;
             signalPlot.LegendText = label;
-
-
         }
 
         private void PlotSignalDataCal(string label, List<CryptoData> data, DateTime date1, DateTime date2)
