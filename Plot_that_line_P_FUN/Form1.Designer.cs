@@ -29,12 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.month = new System.Windows.Forms.Button();
-            this.month6 = new System.Windows.Forms.Button();
-            this.years = new System.Windows.Forms.Button();
-            this.max = new System.Windows.Forms.Button();
-            this.week = new System.Windows.Forms.Button();
-            this.reset = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // panel1
@@ -44,79 +40,34 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(673, 364);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // month
+            // dateTimePicker1
             // 
-            this.month.Location = new System.Drawing.Point(134, 414);
-            this.month.Name = "month";
-            this.month.Size = new System.Drawing.Size(75, 23);
-            this.month.TabIndex = 1;
-            this.month.Text = "1M";
-            this.month.UseVisualStyleBackColor = true;
-            this.month.Click += new System.EventHandler(this.month_Click);
+            this.dateTimePicker1.Location = new System.Drawing.Point(45, 423);
+            this.dateTimePicker1.MaxDate = new System.DateTime(2022, 8, 23, 0, 0, 0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker1.TabIndex = 1;
+            this.dateTimePicker1.Value = new System.DateTime(2022, 8, 23, 0, 0, 0, 0);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
-            // month6
+            // dateTimePicker2
             // 
-            this.month6.Location = new System.Drawing.Point(215, 414);
-            this.month6.Name = "month6";
-            this.month6.Size = new System.Drawing.Size(75, 23);
-            this.month6.TabIndex = 2;
-            this.month6.Text = "6M";
-            this.month6.UseVisualStyleBackColor = true;
-            this.month6.Click += new System.EventHandler(this.month6_Click);
-            // 
-            // years
-            // 
-            this.years.Location = new System.Drawing.Point(296, 414);
-            this.years.Name = "years";
-            this.years.Size = new System.Drawing.Size(75, 23);
-            this.years.TabIndex = 3;
-            this.years.Text = "1Y";
-            this.years.UseVisualStyleBackColor = true;
-            this.years.Click += new System.EventHandler(this.years_Click);
-            // 
-            // max
-            // 
-            this.max.Location = new System.Drawing.Point(377, 414);
-            this.max.Name = "max";
-            this.max.Size = new System.Drawing.Size(75, 23);
-            this.max.TabIndex = 4;
-            this.max.Text = "MAX";
-            this.max.UseVisualStyleBackColor = true;
-            this.max.Click += new System.EventHandler(this.max_Click);
-            // 
-            // week
-            // 
-            this.week.Location = new System.Drawing.Point(53, 414);
-            this.week.Name = "week";
-            this.week.Size = new System.Drawing.Size(75, 23);
-            this.week.TabIndex = 5;
-            this.week.Text = "1W";
-            this.week.UseVisualStyleBackColor = true;
-            this.week.Click += new System.EventHandler(this.week_Click);
-            // 
-            // reset
-            // 
-            this.reset.Location = new System.Drawing.Point(607, 414);
-            this.reset.Name = "reset";
-            this.reset.Size = new System.Drawing.Size(75, 23);
-            this.reset.TabIndex = 6;
-            this.reset.Text = "Reset";
-            this.reset.UseVisualStyleBackColor = true;
-            this.reset.Click += new System.EventHandler(this.reset_Click);
+            this.dateTimePicker2.Location = new System.Drawing.Point(277, 423);
+            this.dateTimePicker2.MaxDate = new System.DateTime(2022, 8, 23, 0, 0, 0, 0);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker2.TabIndex = 2;
+            this.dateTimePicker2.Value = new System.DateTime(2022, 8, 23, 0, 0, 0, 0);
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 487);
-            this.Controls.Add(this.reset);
-            this.Controls.Add(this.week);
-            this.Controls.Add(this.max);
-            this.Controls.Add(this.years);
-            this.Controls.Add(this.month6);
-            this.Controls.Add(this.month);
+            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Graph";
@@ -127,11 +78,7 @@
         #endregion
 
         private Panel panel1;
-        private Button month;
-        private Button month6;
-        private Button years;
-        private Button max;
-        private Button week;
-        private Button reset;
+        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateTimePicker2;
     }
 }
