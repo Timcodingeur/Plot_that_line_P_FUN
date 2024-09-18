@@ -1,19 +1,19 @@
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
-using ScottPlot;
-using ScottPlot.WinForms;
 
 namespace Plot_that_line_P_FUN
 {
-
-    public partial class Calcule 
+    /// <summary>
+    /// s'occupe de tout ce qui est création du graph
+    /// fait les calcule, écris les graph, lit le csv
+    /// </summary>
+    public partial class Calculate
     {
 
-
+        /// <summary>
+        /// lit les fichier csv et prend les date et les close
+        /// </summary>
+        /// <param name="filePath">chemin du fichier csv a lire</param>
+        /// <returns></returns>
         public List<CryptoData> ReadCsv(string filePath)
         {
             List<CryptoData> data = new List<CryptoData>();
@@ -22,7 +22,7 @@ namespace Plot_that_line_P_FUN
                 foreach (var line in File.ReadLines(filePath).Skip(1))
                 {
                     var values = line.Split(',');
-
+                    //on vérifie les type de date, si par exemple a la place d'une date on a écris paprika, bah cela bah pas garder cela
                     if (DateTime.TryParseExact(values[0], "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date) &&
                         double.TryParse(values[4], out double close))
                     {
@@ -38,7 +38,11 @@ namespace Plot_that_line_P_FUN
             return data;
         }
 
-
+        /// <summary>
+        /// vas poser les point pour l'affichage total (donc dans date defini)
+        /// </summary>
+        /// <param name="label">nom de la crypto</param>
+        /// <param name="data">donné de la crypto (close et date)</param>
         public void PlotSignalData(string label, List<CryptoData> data)
         {
 
@@ -55,10 +59,18 @@ namespace Plot_that_line_P_FUN
             signalPlot.LegendText = label;
         }
 
-        public void PlotSignalDataCal(string label, List<CryptoData> data, DateTime date1, DateTime date2)
+        /// <summary>
+        /// vas poser les point pour l'affichage via date
+        /// </summary>
+        /// <param name="label">nom de la crypto</param>
+        /// <param name="data">donné de la crypto (close et date)</param>
+        /// <param name="openDate">date de début</param>x
+        /// <param name="endDate">date de fin</param>
+
+        public void PlotSignalDataCal(string label, List<CryptoData> data, DateTime openDate, DateTime endDate)
         {
 
-            var filteredData = data.Where(point => point.Date >= date1 && point.Date <= date2).ToList();
+            var filteredData = data.Where(point => point.Date >= openDate && point.Date <= endDate).ToList();
 
             double[] yValues = filteredData.Select(point => point.Close).ToArray();
             double[] xValues = filteredData.Select(point => point.Date.ToOADate()).ToArray();
@@ -69,9 +81,13 @@ namespace Plot_that_line_P_FUN
             signalPlot.Data.XOffset = start.ToOADate();
             signalPlot.Data.Period = 1.0;
             signalPlot.LegendText = label;
-
         }
 
+        /// <summary>
+        /// fait les recherche pour les différente crypto (et apelle PlotSignalDataCal pour le calcule)
+        /// </summary>
+        /// <param name="debut">date de début</param>
+        /// <param name="fin">date de fin</param>
         public void search(DateTime debut, DateTime fin)
         {
             try

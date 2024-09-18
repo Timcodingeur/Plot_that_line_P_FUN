@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plot_that_line_P_FUN", "Plot_that_line_P_FUN\Plot_that_line_P_FUN.csproj", "{FA669AB5-8CC2-4E59-A5BA-0623F247E504}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plot_that_line_P_FUN", "Plot_that_line_P_FUN\Plot_that_line_P_FUN.csproj", "{FA669AB5-8CC2-4E59-A5BA-0623F247E504}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plot_that_line_P_FUNTests", "Plot_that_line_P_FUNTests\Plot_that_line_P_FUNTests.csproj", "{F733AC5E-0594-47D0-8EC4-166024EAE4E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FA669AB5-8CC2-4E59-A5BA-0623F247E504}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA669AB5-8CC2-4E59-A5BA-0623F247E504}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA669AB5-8CC2-4E59-A5BA-0623F247E504}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F733AC5E-0594-47D0-8EC4-166024EAE4E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F733AC5E-0594-47D0-8EC4-166024EAE4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F733AC5E-0594-47D0-8EC4-166024EAE4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F733AC5E-0594-47D0-8EC4-166024EAE4E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

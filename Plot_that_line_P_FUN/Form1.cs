@@ -1,21 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
-using ScottPlot;
 using ScottPlot.WinForms;
 
 namespace Plot_that_line_P_FUN
 {
-
+    /// <summary>
+    /// class du form
+    /// </summary>
     public partial class Form1 : Form 
     {
-        Calcule calcule = new Calcule();
+        
+        Calculate calcule = new Calculate();
 
         public static FormsPlot FormsPlot1 = new FormsPlot() { Dock = DockStyle.Fill };
      
+        /// <summary>
+        /// methode principale du form, dans celle ci on vas faire le graphique de base qui s'affiche au lancement de l'app
+        /// </summary>
         public Form1()
         {
             
@@ -29,8 +28,6 @@ namespace Plot_that_line_P_FUN
                 MessageBox.Show("Erreur lors de la lecture des fichiers CSV.");
                 return;
             }
-
-
             calcule.PlotSignalData("Bitcoin", bitcoinData);
             calcule.PlotSignalData("Bitcoin Cash", bitcoinCashData);
             calcule.PlotSignalData("BNB", bnbData);
@@ -41,8 +38,14 @@ namespace Plot_that_line_P_FUN
             FormsPlot1.Refresh();  
         }
 
+        /// <summary>
+        /// date picker du début (si on met le 10.02.2012 alors le graphe commencera par cette date
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
+
 
            
             dateTimePicker2.MinDate = dateTimePicker1.Value;
@@ -51,6 +54,11 @@ namespace Plot_that_line_P_FUN
             calcule.search(dateTimePicker1.Value, dateTimePicker2.Value);
         }
 
+        /// <summary>
+        /// date picker du début (si on met le 10.02.2012 alors le graphe finira par cette date
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
 
