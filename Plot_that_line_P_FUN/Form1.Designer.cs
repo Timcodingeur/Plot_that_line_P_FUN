@@ -28,57 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.SuspendLayout();
+            panel1 = new Panel();
+            dateTimePicker1 = new DateTimePicker();
+            dateTimePicker2 = new DateTimePicker();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.panel1.Location = new System.Drawing.Point(29, 32);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(673, 364);
-            this.panel1.TabIndex = 0;
+            panel1.BackColor = SystemColors.ButtonShadow;
+            panel1.Location = new Point(29, 32);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(673, 364);
+            panel1.TabIndex = 0;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(45, 423);
-            this.dateTimePicker1.MaxDate = new System.DateTime(2022, 8, 23, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePicker1.TabIndex = 1;
-            this.dateTimePicker1.Value = new System.DateTime(2022, 8, 23, 0, 0, 0, 0);
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            dateTimePicker1.Location = new Point(45, 423);
+            dateTimePicker1.MaxDate = new DateTime(2022, 8, 23, 0, 0, 0, 0);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(200, 23);
+            dateTimePicker1.TabIndex = 1;
+            dateTimePicker1.Value = new DateTime(2022, 8, 23, 0, 0, 0, 0);
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(277, 423);
-            this.dateTimePicker2.MaxDate = new System.DateTime(2022, 8, 23, 0, 0, 0, 0);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePicker2.TabIndex = 2;
-            this.dateTimePicker2.Value = new System.DateTime(2022, 8, 23, 0, 0, 0, 0);
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            dateTimePicker2.Location = new Point(277, 423);
+            dateTimePicker2.MaxDate = new DateTime(2022, 8, 23, 0, 0, 0, 0);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(200, 23);
+            dateTimePicker2.TabIndex = 2;
+            dateTimePicker2.Value = new DateTime(2022, 8, 23, 0, 0, 0, 0);
+            dateTimePicker2.ValueChanged += dateTimePicker2_ValueChanged;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 487);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.panel1);
-            this.Name = "Form1";
-            this.Text = "Graph";
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 487);
+            Controls.Add(dateTimePicker2);
+            Controls.Add(dateTimePicker1);
+            Controls.Add(panel1);
+            Name = "Form1";
+            Text = "Graph";
+            ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel panel1;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
+        public DateTimePicker dateTimePicker2;
+        public Panel panel1;
+        public DateTimePicker dateTimePicker1;
     }
 }
