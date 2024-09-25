@@ -16,7 +16,7 @@
 2. [Utilisation](#utilisation)
 3. [Tests](#tests)
 4. [Contribuer](#contribuer)
-5. [Licence]([#licence](https://github.com/Timcodingeur/Plot_that_line_P_FUN/blob/main/LICENCE.md))
+5. [Licence][#licence](https://github.com/Timcodingeur/Plot_that_line_P_FUN/blob/main/LICENCE.md)
 
 ## Description
 le but du projet est de créé un programme de statistique capable d'afficher des courbe de cryptomonnaie, on fait cela avec les connaissance acquise durant le module 323
