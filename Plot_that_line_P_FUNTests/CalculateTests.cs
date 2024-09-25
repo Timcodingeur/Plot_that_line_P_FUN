@@ -92,7 +92,7 @@ namespace Plot_that_line_P_FUN.Tests
             DateTime endDate = new DateTime(2021, 1, 3);
 
             
-            calculate.PlotSignalDataCal("Bitcoin", cryptoData, openDate, endDate);
+            calculate.PlotSignalDataDate("Bitcoin", cryptoData, openDate, endDate);
 
             
             var filteredData = cryptoData.Where(c => c.Date >= openDate && c.Date <= endDate).ToList();
@@ -120,7 +120,7 @@ namespace Plot_that_line_P_FUN.Tests
             };
 
             
-            calculate.search(debut, fin);
+            calculate.Search(debut, fin);
 
 
             Assert.IsNotNull(bitcoinData);
