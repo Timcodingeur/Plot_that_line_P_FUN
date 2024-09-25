@@ -13,20 +13,25 @@
 ## Table des matières
 
 1. [Installation](#installation)
-2. [Utilisation](#utilisation)
-3. [Tests](#tests)
-4. [Contribuer](#contribuer)
-5. [Licence](#licence)
+2. [Description](#Description)
+3. [CDC](#CDC)
+4. [Tests](#Tests)
+5. [Utilisation de l'ai](#AI)
+6. [Licence](https://github.com/Timcodingeur/Plot_that_line_P_FUN/blob/main/LICENCE.md)
+7. [CODE OF CONDUCT](https://github.com/Timcodingeur/Plot_that_line_P_FUN/blob/main/CODE_OF_CONDUCT.md)
+
+## Installation
+pour l'installation vous devez
 
 ## Description
 le but du projet est de créé un programme de statistique capable d'afficher des courbe de cryptomonnaie, on fait cela avec les connaissance acquise durant le module 323
 
-## Cahier des charges
+## CDC
 On a comment instruction d'utilisé LINQ, de ne pas utilisé de boucle for. d'afficher 3 courbe en même temps. Le code doit être Orgainisé, Compacté, Optimisé, Testé, Commenté et Complet.
 https://img.shields.io/visual-studio
 
 
-## Test 
+## Tests
 
 ### Test unitaire
 
@@ -40,6 +45,6 @@ https://img.shields.io/visual-studio
 
 ### Test manuel
 
-## Utilisateur de l'ai
+## AI
 
 J'ai un tout petit peut utilisé l'ai, je l'ai utilisé pour m'informer sur comment bien faire un readme, j'ai aussi posé de temps en temps une question sur le "comment" on fait certaine chose, mais il n'a pas travailé a ma place. Je l'ai utilisé pour m'aider a faire mes test unitaire (car je n'avais pas d'idée). 
