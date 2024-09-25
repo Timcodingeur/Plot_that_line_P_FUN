@@ -51,7 +51,7 @@ namespace Plot_that_line_P_FUN
             dateTimePicker2.MinDate = dateTimePicker1.Value;
 
             dateTimePicker2.MaxDate = new DateTime(2022, 08, 23);
-            calcule.search(dateTimePicker1.Value, dateTimePicker2.Value);
+            calcule.Search(dateTimePicker1.Value, dateTimePicker2.Value);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Plot_that_line_P_FUN
         {
 
             dateTimePicker1.MinDate = DateTime.MinValue;
-            calcule.search(dateTimePicker1.Value, dateTimePicker2.Value);
+            calcule.Search(dateTimePicker1.Value, dateTimePicker2.Value);
         }
 
 

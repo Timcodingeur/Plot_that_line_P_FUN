@@ -67,7 +67,7 @@ namespace Plot_that_line_P_FUN
         /// <param name="openDate">date de début</param>x
         /// <param name="endDate">date de fin</param>
 
-        public void PlotSignalDataCal(string label, List<CryptoData> data, DateTime openDate, DateTime endDate)
+        public void PlotSignalDataDate(string label, List<CryptoData> data, DateTime openDate, DateTime endDate)
         {
 
             var filteredData = data.Where(point => point.Date >= openDate && point.Date <= endDate).ToList();
@@ -88,7 +88,7 @@ namespace Plot_that_line_P_FUN
         /// </summary>
         /// <param name="debut">date de début</param>
         /// <param name="fin">date de fin</param>
-        public void search(DateTime debut, DateTime fin)
+        public void Search(DateTime debut, DateTime fin)
         {
             try
             {
@@ -98,9 +98,9 @@ namespace Plot_that_line_P_FUN
                 List<CryptoData> bnbData = ReadCsv("../../../../Top-100-Crypto-Coins/bnb.csv");
 
 
-                PlotSignalDataCal("Bitcoin", bitcoinData, debut, fin);
-                PlotSignalDataCal("Bitcoin Cash", bitcoinCashData, debut, fin);
-                PlotSignalDataCal("BNB", bnbData, debut, fin);
+                PlotSignalDataDate("Bitcoin", bitcoinData, debut, fin);
+                PlotSignalDataDate("Bitcoin Cash", bitcoinCashData, debut, fin);
+                PlotSignalDataDate("BNB", bnbData, debut, fin);
                 Form1.FormsPlot1.Plot.Axes.DateTimeTicksBottom();
                 Form1.FormsPlot1.Refresh();
             }
