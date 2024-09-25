@@ -14,7 +14,7 @@
 
 1. [Installation](#installation)
 2. [Description](#Description)
-3. [Description](#CDC)
+3. [CDC](#CDC)
 4. [Tests](#Tests)
 5. [Utilisation de l'ai](#AI)
 6. [Licence](https://github.com/Timcodingeur/Plot_that_line_P_FUN/blob/main/LICENCE.md)
