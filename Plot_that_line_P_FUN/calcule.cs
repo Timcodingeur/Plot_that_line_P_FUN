@@ -8,6 +8,7 @@ namespace Plot_that_line_P_FUN
     /// </summary>
     public partial class Calculate
     {
+        string pathdeb = "./Top-100-Crypto-Coins/";
 
         /// <summary>
         /// lit les fichier csv et prend les date et les close
@@ -93,9 +94,9 @@ namespace Plot_that_line_P_FUN
             try
             {
                 Form1.FormsPlot1.Plot.Clear();
-                List<CryptoData> bitcoinData = ReadCsv("../../../../Top-100-Crypto-Coins/bitcoin.csv");
-                List<CryptoData> bitcoinCashData = ReadCsv("../../../../Top-100-Crypto-Coins/bitcoin_cash.csv");
-                List<CryptoData> bnbData = ReadCsv("../../../../Top-100-Crypto-Coins/bnb.csv");
+                List<CryptoData> bitcoinData = ReadCsv(pathdeb + "bitcoin.csv");
+                List<CryptoData> bitcoinCashData = ReadCsv(pathdeb + "bitcoin_cash.csv");
+                List<CryptoData> bnbData = ReadCsv(pathdeb + "bnb.csv");
 
 
                 PlotSignalDataDate("Bitcoin", bitcoinData, debut, fin);

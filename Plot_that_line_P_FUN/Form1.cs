@@ -7,7 +7,7 @@ namespace Plot_that_line_P_FUN
     /// </summary>
     public partial class Form1 : Form 
     {
-        
+        string pathdeb = "./Top-100-Crypto-Coins/";
         Calculate calcule = new Calculate();
 
         public static FormsPlot FormsPlot1 = new FormsPlot() { Dock = DockStyle.Fill };
@@ -18,9 +18,9 @@ namespace Plot_that_line_P_FUN
         public Form1()
         {
             
-            List<CryptoData> bitcoinData = calcule.ReadCsv("../../../../Top-100-Crypto-Coins/bitcoin.csv");
-            List<CryptoData> bitcoinCashData = calcule.ReadCsv("../../../../Top-100-Crypto-Coins/bitcoin_cash.csv");
-            List<CryptoData> bnbData = calcule.ReadCsv("../../../../Top-100-Crypto-Coins/bnb.csv");
+            List<CryptoData> bitcoinData = calcule.ReadCsv(pathdeb+"bitcoin.csv");
+            List<CryptoData> bitcoinCashData = calcule.ReadCsv(pathdeb + "bitcoin_cash.csv");
+            List<CryptoData> bnbData = calcule.ReadCsv(pathdeb + "bnb.csv");
             InitializeComponent();
             panel1.Controls.Add(FormsPlot1);
             if (bitcoinData == null || bitcoinCashData == null || bnbData == null)
