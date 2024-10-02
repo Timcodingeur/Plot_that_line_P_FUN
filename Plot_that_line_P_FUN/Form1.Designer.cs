@@ -32,7 +32,6 @@
             dateTimePicker1 = new DateTimePicker();
             dateTimePicker2 = new DateTimePicker();
             coinBox = new CheckedListBox();
-            checkedListBox1 = new CheckedListBox();
             SuspendLayout();
             // 
             // panel1
@@ -72,20 +71,11 @@
             coinBox.TabIndex = 4;
             coinBox.SelectedIndexChanged += coinBox_SelectedIndexChanged;
             // 
-            // checkedListBox1
-            // 
-            checkedListBox1.FormattingEnabled = true;
-            checkedListBox1.Location = new Point(694, 434);
-            checkedListBox1.Name = "checkedListBox1";
-            checkedListBox1.Size = new Size(120, 94);
-            checkedListBox1.TabIndex = 5;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 487);
-            Controls.Add(checkedListBox1);
             Controls.Add(coinBox);
             Controls.Add(dateTimePicker2);
             Controls.Add(dateTimePicker1);
@@ -100,6 +90,5 @@
         public Panel panel1;
         public DateTimePicker dateTimePicker1;
         public CheckedListBox coinBox;
-        private CheckedListBox checkedListBox1;
     }
 }
