@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Globalization;
 
 namespace Plot_that_line_P_FUN
@@ -8,7 +9,8 @@ namespace Plot_that_line_P_FUN
     /// </summary>
     public partial class Calculate
     {
-        string pathdeb = "./Top-100-Crypto-Coins/";
+
+        string pathdeb = "../../../../cryptoCSV/";
 
         /// <summary>
         /// lit les fichier csv et prend les date et les close
@@ -38,27 +40,7 @@ namespace Plot_that_line_P_FUN
             }
             return data;
         }
-
-        /// <summary>
-        /// vas poser les point pour l'affichage total (donc dans date defini)
-        /// </summary>
-        /// <param name="label">nom de la crypto</param>
-        /// <param name="data">donné de la crypto (close et date)</param>
-        public void PlotSignalData(string label, List<CryptoData> data)
-        {
-
-            if (data == null || !data.Any()) return;
-
-
-            double[] yValues = data.Select(point => point.Close).ToArray();
-            double[] xValues = data.Select(point => point.Date.ToOADate()).ToArray();
-            DateTime start = DateTime.FromOADate(xValues[1]);
-
-            var signalPlot = Form1.FormsPlot1.Plot.Add.Signal(yValues);
-            signalPlot.Data.XOffset = start.ToOADate();
-            signalPlot.Data.Period = 1.0;
-            signalPlot.LegendText = label;
-        }
+      
 
         /// <summary>
         /// vas poser les point pour l'affichage via date
@@ -76,7 +58,7 @@ namespace Plot_that_line_P_FUN
             double[] yValues = filteredData.Select(point => point.Close).ToArray();
             double[] xValues = filteredData.Select(point => point.Date.ToOADate()).ToArray();
 
-            DateTime start = DateTime.FromOADate(xValues[1]);
+            DateTime start = DateTime.FromOADate(xValues[0]);
 
             var signalPlot = Form1.FormsPlot1.Plot.Add.Signal(yValues);
             signalPlot.Data.XOffset = start.ToOADate();
@@ -89,26 +71,18 @@ namespace Plot_that_line_P_FUN
         /// </summary>
         /// <param name="debut">date de début</param>
         /// <param name="fin">date de fin</param>
-        public void Search(DateTime debut, DateTime fin)
+        public void Search(DateTime debut, DateTime fin, List <string> changed)
         {
-            try
-            {
+          
                 Form1.FormsPlot1.Plot.Clear();
-                List<CryptoData> bitcoinData = ReadCsv(pathdeb + "bitcoin.csv");
-                List<CryptoData> bitcoinCashData = ReadCsv(pathdeb + "bitcoin_cash.csv");
-                List<CryptoData> bnbData = ReadCsv(pathdeb + "bnb.csv");
-
-
-                PlotSignalDataDate("Bitcoin", bitcoinData, debut, fin);
-                PlotSignalDataDate("Bitcoin Cash", bitcoinCashData, debut, fin);
-                PlotSignalDataDate("BNB", bnbData, debut, fin);
+                foreach(var i in changed)
+                {
+                    List<CryptoData> Data = ReadCsv(pathdeb + i);
+                    Debug.WriteLine(i, Data, debut, fin);
+                    PlotSignalDataDate(i, Data, debut, fin);
+                }               
                 Form1.FormsPlot1.Plot.Axes.DateTimeTicksBottom();
                 Form1.FormsPlot1.Refresh();
-            }
-            catch
-            {
-
-            }
         }
     }
 }

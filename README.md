@@ -21,7 +21,9 @@
 7. [CODE OF CONDUCT](https://github.com/Timcodingeur/Plot_that_line_P_FUN/blob/main/CODE_OF_CONDUCT.md)
 
 ## Installation
-pour l'installation vous devez
+pour l'installation vous devez prendre le dossier "publish" et vous pouvez simplement utilisé le .exe.
+si vous avez des CSV avec les cours d'autre cryptomonaie vous pouvez les mettre dans le dossier cryptoCSV
+
 
 ## Description
 le but du projet est de créé un programme de statistique capable d'afficher des courbe de cryptomonnaie, on fait cela avec les connaissance acquise durant le module 323
@@ -44,6 +46,8 @@ https://img.shields.io/visual-studio
 
 
 ### Test manuel
+
+
 
 ## AI
 

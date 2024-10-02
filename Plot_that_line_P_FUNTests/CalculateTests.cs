@@ -21,7 +21,7 @@ namespace Plot_that_line_P_FUN.Tests
             List<CryptoData> data = new List<CryptoData>();
             try
             {
-                foreach (var line in File.ReadLines("../../../../Top-100-Crypto-Coins/bitcoin_cash.csv").Skip(1))
+                foreach (var line in File.ReadLines("../../../../cryptoCSV/bitcoin_cash.csv").Skip(1))
                 {
                     var values = line.Split(',');
                     if (DateTime.TryParseExact(values[0], "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date) &&
@@ -56,7 +56,6 @@ namespace Plot_that_line_P_FUN.Tests
             };
 
             
-            calculate.PlotSignalData("Bitcoin", cryptoData);
 
             
             double[] expectedXValues = cryptoData.Select(c => c.Date.ToOADate()).ToArray();
@@ -120,7 +119,7 @@ namespace Plot_that_line_P_FUN.Tests
             };
 
             
-            calculate.Search(debut, fin);
+            calculate.Search(debut, fin, "bitcoin.csv");
 
 
             Assert.IsNotNull(bitcoinData);

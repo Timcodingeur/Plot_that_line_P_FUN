@@ -31,6 +31,8 @@
             panel1 = new Panel();
             dateTimePicker1 = new DateTimePicker();
             dateTimePicker2 = new DateTimePicker();
+            coinBox = new CheckedListBox();
+            checkedListBox1 = new CheckedListBox();
             SuspendLayout();
             // 
             // panel1
@@ -44,11 +46,11 @@
             // dateTimePicker1
             // 
             dateTimePicker1.Location = new Point(45, 423);
-            dateTimePicker1.MaxDate = new DateTime(2022, 8, 23, 0, 0, 0, 0);
+            dateTimePicker1.MaxDate = new DateTime(2015, 8, 23, 0, 0, 0, 0);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(200, 23);
             dateTimePicker1.TabIndex = 1;
-            dateTimePicker1.Value = new DateTime(2022, 8, 23, 0, 0, 0, 0);
+            dateTimePicker1.Value = new DateTime(2015, 8, 23, 0, 0, 0, 0);
             dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // dateTimePicker2
@@ -61,11 +63,30 @@
             dateTimePicker2.Value = new DateTime(2022, 8, 23, 0, 0, 0, 0);
             dateTimePicker2.ValueChanged += dateTimePicker2_ValueChanged;
             // 
+            // coinBox
+            // 
+            coinBox.FormattingEnabled = true;
+            coinBox.Location = new Point(545, 417);
+            coinBox.Name = "coinBox";
+            coinBox.Size = new Size(120, 58);
+            coinBox.TabIndex = 4;
+            coinBox.SelectedIndexChanged += coinBox_SelectedIndexChanged;
+            // 
+            // checkedListBox1
+            // 
+            checkedListBox1.FormattingEnabled = true;
+            checkedListBox1.Location = new Point(694, 434);
+            checkedListBox1.Name = "checkedListBox1";
+            checkedListBox1.Size = new Size(120, 94);
+            checkedListBox1.TabIndex = 5;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 487);
+            Controls.Add(checkedListBox1);
+            Controls.Add(coinBox);
             Controls.Add(dateTimePicker2);
             Controls.Add(dateTimePicker1);
             Controls.Add(panel1);
@@ -78,5 +99,7 @@
         public DateTimePicker dateTimePicker2;
         public Panel panel1;
         public DateTimePicker dateTimePicker1;
+        public CheckedListBox coinBox;
+        private CheckedListBox checkedListBox1;
     }
 }
