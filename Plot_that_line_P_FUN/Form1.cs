@@ -2,6 +2,7 @@ using ScottPlot.WinForms;
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Plot_that_line_P_FUN
 {
@@ -21,7 +22,7 @@ namespace Plot_that_line_P_FUN
         public Form1()
         {
 
-  
+
             InitializeComponent();
             panel1.Controls.Add(FormsPlot1);
 
@@ -33,12 +34,13 @@ namespace Plot_that_line_P_FUN
             FormsPlot1.Plot.Axes.DateTimeTicksBottom();
             FormsPlot1.Refresh();
 
-            
+
+
         }
         public List<string> items = new List<string>();
         public void pathed()
         {
-            
+
             string path = "../../../../cryptoCSV";
             foreach (var file in Directory.GetFiles(path))
             {
@@ -82,7 +84,7 @@ namespace Plot_that_line_P_FUN
 
             foreach (var item in coinBox.CheckedItems)
             {
-                selectedFiles.Add(item.ToString()); 
+                selectedFiles.Add(item.ToString());
                 Debug.WriteLine(item.ToString());
             }
 
@@ -92,6 +94,9 @@ namespace Plot_that_line_P_FUN
         {
             calcule.Search(dateTimePicker1.Value, dateTimePicker2.Value, GetCheckedFiles());
         }
+
+
+ 
     }
 
 }

@@ -1,5 +1,7 @@
+using ScottPlot;
 using System.Diagnostics;
 using System.Globalization;
+using ScottPlot.Plottables;
 
 namespace Plot_that_line_P_FUN
 {
@@ -9,9 +11,9 @@ namespace Plot_that_line_P_FUN
     /// </summary>
     public partial class Calculate
     {
-
         string pathdeb = "../../../../cryptoCSV/";
 
+        private ToolTip tooltip = new ToolTip();
         /// <summary>
         /// lit les fichier csv et prend les date et les close
         /// </summary>
@@ -40,19 +42,16 @@ namespace Plot_that_line_P_FUN
             }
             return data;
         }
-      
 
         /// <summary>
         /// vas poser les point pour l'affichage via date
         /// </summary>
         /// <param name="label">nom de la crypto</param>
         /// <param name="data">donné de la crypto (close et date)</param>
-        /// <param name="openDate">date de début</param>x
+        /// <param name="openDate">date de début</param>
         /// <param name="endDate">date de fin</param>
-
         public void PlotSignalDataDate(string label, List<CryptoData> data, DateTime openDate, DateTime endDate)
         {
-
             var filteredData = data.Where(point => point.Date >= openDate && point.Date <= endDate).ToList();
 
             double[] yValues = filteredData.Select(point => point.Close).ToArray();
@@ -63,7 +62,89 @@ namespace Plot_that_line_P_FUN
             var signalPlot = Form1.FormsPlot1.Plot.Add.Signal(yValues);
             signalPlot.Data.XOffset = start.ToOADate();
             signalPlot.Data.Period = 1.0;
+
             signalPlot.LegendText = label;
+            Form1.FormsPlot1.Plot.ShowLegend(Alignment.UpperCenter, ScottPlot.Orientation.Horizontal);
+            static string CustomFormatter(double yValues)
+            {
+                return $"${yValues}";
+            }
+            ScottPlot.TickGenerators.NumericAutomatic myTickGenerator = new()
+            {
+                LabelFormatter = CustomFormatter
+            };
+            Form1.FormsPlot1.Plot.Axes.Left.TickGenerator = myTickGenerator;
+
+            ScottPlot.Plottables.Crosshair crosshair = Form1.FormsPlot1.Plot.Add.Crosshair(0, 0);
+            crosshair.IsVisible = false;
+            crosshair.LineWidth = 1;
+
+
+            Form1.FormsPlot1.MouseMove += (sender, e) =>
+            {
+                if (xValues == null || yValues == null || xValues.Length == 0)
+                    return;
+
+                // Convertir la position de la souris en coordonnées de données
+                var mousePixel = new Pixel(e.Location.X, e.Location.Y);
+                var mouseCoords = Form1.FormsPlot1.Plot.GetCoordinates(mousePixel);
+
+                // Créer une liste pour stocker les informations de chaque courbe au point de la souris
+                List<string> toolTipInfo = new List<string>();
+
+                // Rechercher les points les plus proches sur chaque courbe
+                foreach (var plottable in Form1.FormsPlot1.Plot.GetPlottables())
+                {
+                    if (plottable is ScottPlot signalPlot)
+                    {
+                        var ys = signalPlot.GetYs();
+                        double[] xs = ys.Select((y, index) => start.AddDays(index).ToOADate()).ToArray();
+                        int nearestIndex = FindClosestIndex(xs, mouseCoords.X);
+
+                        if (nearestIndex >= 0 && nearestIndex < ys.Length)
+                        {
+                            double price = ys[nearestIndex];
+                            DateTime date = DateTime.FromOADate(xs[nearestIndex]);
+
+                            // Ajouter les informations de cette courbe à la liste
+                            toolTipInfo.Add($"{signalPlot.LegendText}: Date: {date.ToShortDateString()}, Prix: {price}");
+                        }
+                    }
+                }
+
+                // Mettre à jour le crosshair et le tooltip avec les informations des courbes
+                if (toolTipInfo.Count > 0)
+                {
+                    crosshair.IsVisible = true;
+                    crosshair.Position = new Coordinates(mouseCoords.X, crosshair.Position.Y); // Déplacer le crosshair sur la coordonnée X
+
+                    string info = string.Join("\n", toolTipInfo);
+                    tooltip.Show(info, Form1.FormsPlot1, e.Location.X + 15, e.Location.Y + 15, 1000);
+                }
+                else
+                {
+                    crosshair.IsVisible = false;
+                }
+
+                // Rafraîchir le graphique
+                Form1.FormsPlot1.Refresh();
+            };
+
+        }
+
+        int FindClosestIndex(double[] array, double value)
+        {
+            int index = Array.BinarySearch(array, value);
+            if (index >= 0)
+                return index;
+            index = ~index;
+            if (index == 0)
+                return 0;
+            if (index >= array.Length)
+                return array.Length - 1;
+            double prev = array[index - 1];
+            double next = array[index];
+            return (Math.Abs(value - prev) < Math.Abs(value - next)) ? index - 1 : index;
         }
 
         /// <summary>
@@ -71,18 +152,17 @@ namespace Plot_that_line_P_FUN
         /// </summary>
         /// <param name="debut">date de début</param>
         /// <param name="fin">date de fin</param>
-        public void Search(DateTime debut, DateTime fin, List <string> changed)
+        public void Search(DateTime debut, DateTime fin, List<string> changed)
         {
-          
-                Form1.FormsPlot1.Plot.Clear();
-                foreach(var i in changed)
-                {
-                    List<CryptoData> Data = ReadCsv(pathdeb + i);
-                    Debug.WriteLine(i, Data, debut, fin);
-                    PlotSignalDataDate(i, Data, debut, fin);
-                }               
-                Form1.FormsPlot1.Plot.Axes.DateTimeTicksBottom();
-                Form1.FormsPlot1.Refresh();
+            Form1.FormsPlot1.Plot.Clear();
+            foreach (var i in changed)
+            {
+                List<CryptoData> Data = ReadCsv(pathdeb + i);
+                Debug.WriteLine(i, Data, debut, fin);
+                PlotSignalDataDate(i, Data, debut, fin);
+            }
+            Form1.FormsPlot1.Plot.Axes.DateTimeTicksBottom();
+            Form1.FormsPlot1.Refresh();
         }
     }
 }
