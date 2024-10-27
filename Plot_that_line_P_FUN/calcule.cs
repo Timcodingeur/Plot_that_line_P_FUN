@@ -57,7 +57,7 @@ namespace Plot_that_line_P_FUN
             double[] yValues = filteredData.Select(point => point.Close).ToArray();
             double[] xValues = filteredData.Select(point => point.Date.ToOADate()).ToArray();
 
-            DateTime start = DateTime.FromOADate(xValues[0]);
+            DateTime start = DateTime.FromOADate(xValues[4]);
 
             var signalPlot = Form1.FormsPlot1.Plot.Add.Signal(yValues);
             signalPlot.Data.XOffset = start.ToOADate();
@@ -89,36 +89,18 @@ namespace Plot_that_line_P_FUN
                 var mousePixel = new Pixel(e.Location.X, e.Location.Y);
                 var mouseCoords = Form1.FormsPlot1.Plot.GetCoordinates(mousePixel);
 
-                // Créer une liste pour stocker les informations de chaque courbe au point de la souris
-                List<string> toolTipInfo = new List<string>();
-
-                // Rechercher les points les plus proches sur chaque courbe
-                foreach (var plottable in Form1.FormsPlot1.Plot.GetPlottables())
+                // Rechercher le point le plus proche sur la courbe
+                var nearestIndex = FindClosestIndex(xValues, mouseCoords.X);
+                if (nearestIndex >= 0 && nearestIndex < yValues.Length)
                 {
-                    if (plottable is ScottPlot signalPlot)
-                    {
-                        var ys = signalPlot.GetYs();
-                        double[] xs = ys.Select((y, index) => start.AddDays(index).ToOADate()).ToArray();
-                        int nearestIndex = FindClosestIndex(xs, mouseCoords.X);
+                    double price = yValues[nearestIndex];
+                    DateTime date = DateTime.FromOADate(xValues[nearestIndex]);
 
-                        if (nearestIndex >= 0 && nearestIndex < ys.Length)
-                        {
-                            double price = ys[nearestIndex];
-                            DateTime date = DateTime.FromOADate(xs[nearestIndex]);
-
-                            // Ajouter les informations de cette courbe à la liste
-                            toolTipInfo.Add($"{signalPlot.LegendText}: Date: {date.ToShortDateString()}, Prix: {price}");
-                        }
-                    }
-                }
-
-                // Mettre à jour le crosshair et le tooltip avec les informations des courbes
-                if (toolTipInfo.Count > 0)
-                {
                     crosshair.IsVisible = true;
-                    crosshair.Position = new Coordinates(mouseCoords.X, crosshair.Position.Y); // Déplacer le crosshair sur la coordonnée X
+                    crosshair.Position = new Coordinates(mouseCoords.X, yValues[nearestIndex]);
 
-                    string info = string.Join("\n", toolTipInfo);
+                    // Mettre à jour le ToolTip avec les informations correspondantes
+                    string info = $"{label}: Date: {date.ToShortDateString()}, Prix: {price}";
                     tooltip.Show(info, Form1.FormsPlot1, e.Location.X + 15, e.Location.Y + 15, 1000);
                 }
                 else
@@ -129,7 +111,6 @@ namespace Plot_that_line_P_FUN
                 // Rafraîchir le graphique
                 Form1.FormsPlot1.Refresh();
             };
-
         }
 
         int FindClosestIndex(double[] array, double value)
