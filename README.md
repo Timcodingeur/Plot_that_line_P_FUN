@@ -47,6 +47,19 @@ https://img.shields.io/visual-studio
 
 ### Test manuel
 
+| Test                                                        | Statut  |
+|-------------------------------------------------------------|---------|
+| Lorsqu'on coche un fichier, la courbe est ajoutée           | Succès  |
+| Les informations de la courbe s'affichent au passage de la souris | Succès  |
+| L'ajout d'un fichier dans le dossier "cryptoCSV" le charge comme les autres | Succès  |
+| On peut afficher autant de courbes que l'on veut            | Succès  |
+| Les informations de toutes les courbes sont affichées       | Succès  |
+| Les dates correspondent à la position sur la courbe         | Succès  |
+| Lorsque l'on change les dates, la courbe correspond         | Succès  |
+| La courbe suit bien les variations de prix                  | Succès  |
+| Les informations des courbes incluent le nom du fichier, la date et le prix | Succès  |
+| Les graphiques ont des couleurs différentes                 | Succès  |
+
 
 
 ## AI
