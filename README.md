@@ -61,6 +61,10 @@ https://img.shields.io/visual-studio
 | Les graphiques ont des couleurs différentes                 | Succès  |
 
 
+## Planification et JRNTRAV
+
+dans le fichier m-planification-jnltrav.xlsm 
+[lien](https://github.com/Timcodingeur/Plot_that_line_P_FUN/blob/main/m-planification-jnltrav-Timothy.xlsm)
 
 ## AI
 
