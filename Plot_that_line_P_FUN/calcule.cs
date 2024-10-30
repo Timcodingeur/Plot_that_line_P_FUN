@@ -57,7 +57,7 @@ namespace Plot_that_line_P_FUN
             double[] yValues = filteredData.Select(point => point.Close).ToArray();
             double[] xValues = filteredData.Select(point => point.Date.ToOADate()).ToArray();
 
-            DateTime start = DateTime.FromOADate(xValues[0]);
+            DateTime start = DateTime.FromOADate(xValues[4]);
 
             var signalPlot = Form1.FormsPlot1.Plot.Add.Signal(yValues);
             signalPlot.Label = label;
@@ -118,6 +118,7 @@ namespace Plot_that_line_P_FUN
                     crosshair.IsVisible = true;
                     crosshair.Position = new Coordinates(mouseCoords.X, crosshair.Position.Y);
                     string info = string.Join("\n", toolTipInfo);
+
                     tooltip.Show(info, Form1.FormsPlot1, e.Location.X + 15, e.Location.Y + 15, 1000);
                 }
                 else
