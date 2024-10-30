@@ -51,4 +51,4 @@ https://img.shields.io/visual-studio
 
 ## AI
 
-J'ai un tout petit peut utilisé l'ai, je l'ai utilisé pour m'informer sur comment bien faire un readme, j'ai aussi posé de temps en temps une question sur le "comment" on fait certaine chose, mais il n'a pas travailé a ma place. Je l'ai utilisé pour m'aider a faire mes test unitaire (car je n'avais pas d'idée). 
+J'ai un tout petit peut utilisé l'ai, je l'ai utilisé pour m'informer sur comment bien faire un readme, j'ai aussi posé de temps en temps une question sur le "comment" on fait certaine chose, mais il n'a pas travailé a ma place. Je l'ai utilisé pour m'aider a faire mes test unitaire (car je n'avais pas d'idée). je l'ai aussi utilisé pour la partie du point pour afficher les donnée  ou on a notre souris.
