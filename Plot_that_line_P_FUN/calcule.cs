@@ -44,10 +44,10 @@ namespace Plot_that_line_P_FUN
         }
 
         /// <summary>
-        /// vas poser les point pour l'affichage via date
+        /// vas poser les points pour l'affichage via date
         /// </summary>
         /// <param name="label">nom de la crypto</param>
-        /// <param name="data">donné de la crypto (close et date)</param>
+        /// <param name="data">données de la crypto (close et date)</param>
         /// <param name="openDate">date de début</param>
         /// <param name="endDate">date de fin</param>
         public void PlotSignalDataDate(string label, List<CryptoData> data, DateTime openDate, DateTime endDate)
@@ -60,64 +60,63 @@ namespace Plot_that_line_P_FUN
             DateTime start = DateTime.FromOADate(xValues[0]);
 
             var signalPlot = Form1.FormsPlot1.Plot.Add.Signal(yValues);
-            signalPlot.Data.XOffset = start.ToOADate();
-            signalPlot.Data.Period = 1.0;
+            signalPlot.Label = label;
+            signalPlot.Data.XOffset = start.ToOADate(); 
+            
 
-            signalPlot.LegendText = label;
             Form1.FormsPlot1.Plot.ShowLegend(Alignment.UpperCenter, ScottPlot.Orientation.Horizontal);
+
             static string CustomFormatter(double yValues)
             {
                 return $"${yValues}";
             }
+
             ScottPlot.TickGenerators.NumericAutomatic myTickGenerator = new()
             {
                 LabelFormatter = CustomFormatter
             };
             Form1.FormsPlot1.Plot.Axes.Left.TickGenerator = myTickGenerator;
 
+            // Crosshair pour suivre le point le plus proche
             ScottPlot.Plottables.Crosshair crosshair = Form1.FormsPlot1.Plot.Add.Crosshair(0, 0);
             crosshair.IsVisible = false;
             crosshair.LineWidth = 1;
 
-
             Form1.FormsPlot1.MouseMove += (sender, e) =>
             {
-                if (xValues == null || yValues == null || xValues.Length == 0)
-                    return;
-
-                // Convertir la position de la souris en coordonnées de données
                 var mousePixel = new Pixel(e.Location.X, e.Location.Y);
                 var mouseCoords = Form1.FormsPlot1.Plot.GetCoordinates(mousePixel);
 
-                // Créer une liste pour stocker les informations de chaque courbe au point de la souris
                 List<string> toolTipInfo = new List<string>();
 
-                // Rechercher les points les plus proches sur chaque courbe
+                // Parcourir toutes les courbes pour trouver le point le plus proche de chaque courbe
                 foreach (var plottable in Form1.FormsPlot1.Plot.GetPlottables())
                 {
-                    if (plottable is ScottPlot signalPlot)
+                    if (plottable is ScottPlot.Plottables.Signal signal)
                     {
-                        var ys = signalPlot.GetYs();
-                        double[] xs = ys.Select((y, index) => start.AddDays(index).ToOADate()).ToArray();
-                        int nearestIndex = FindClosestIndex(xs, mouseCoords.X);
+                        var ys = signal.Data.GetYs();
+                        double offsetX = signal.Data.XOffset;
+                        double sampleRate = 1.0;
 
-                        if (nearestIndex >= 0 && nearestIndex < ys.Length)
+                        // Calculer les valeurs X en utilisant offsetX et sampleRate
+                        double[] xs = Enumerable.Range(0, ys.Count)
+                            .Select(i => offsetX + i * sampleRate)
+                            .ToArray();
+
+                        int nearestIndex = FindClosestIndex(xs, mouseCoords.X);
+                        if (nearestIndex >= 0 && nearestIndex < ys.Count)
                         {
                             double price = ys[nearestIndex];
                             DateTime date = DateTime.FromOADate(xs[nearestIndex]);
-
-                            // Ajouter les informations de cette courbe à la liste
-                            toolTipInfo.Add($"{signalPlot.LegendText}: Date: {date.ToShortDateString()}, Prix: {price}");
+                            toolTipInfo.Add($"{signal.Label}: Date: {date.ToShortDateString()}, Prix: {price}");
                         }
                     }
                 }
 
-                // Mettre à jour le crosshair et le tooltip avec les informations des courbes
                 if (toolTipInfo.Count > 0)
                 {
                     crosshair.IsVisible = true;
-                    crosshair.Position = new Coordinates(mouseCoords.X, crosshair.Position.Y); // Déplacer le crosshair sur la coordonnée X
-
+                    crosshair.Position = new Coordinates(mouseCoords.X, crosshair.Position.Y);
                     string info = string.Join("\n", toolTipInfo);
                     tooltip.Show(info, Form1.FormsPlot1, e.Location.X + 15, e.Location.Y + 15, 1000);
                 }
@@ -126,10 +125,8 @@ namespace Plot_that_line_P_FUN
                     crosshair.IsVisible = false;
                 }
 
-                // Rafraîchir le graphique
                 Form1.FormsPlot1.Refresh();
             };
-
         }
 
         int FindClosestIndex(double[] array, double value)
@@ -148,7 +145,7 @@ namespace Plot_that_line_P_FUN
         }
 
         /// <summary>
-        /// fait les recherche pour les différente crypto (et apelle PlotSignalDataCal pour le calcule)
+        /// fait les recherches pour les différentes cryptos (et appelle PlotSignalDataCal pour le calcul)
         /// </summary>
         /// <param name="debut">date de début</param>
         /// <param name="fin">date de fin</param>
